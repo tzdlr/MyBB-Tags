@@ -48,6 +48,15 @@ function tags_index_start()
 		$comma = $lang->comma;
 	}
 
+	if($mybb->get_input('action') == 'recreateSlugs'){
+		echo "RECREATE<br/>";
+		$query = DBTags::get();
+		while($tag = $db->fetch_array($query))
+		{
+			DBTagsSlug::newSlugs($tag['name']);
+		}
+	}
+
 	if($tags != '')
 	{
 		eval('$tags = "'.$templates->get('tags_box').'";');
