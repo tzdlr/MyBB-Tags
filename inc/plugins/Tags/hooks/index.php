@@ -54,7 +54,7 @@ function tags_index_start()
 		$tags = array();
 		while($tag = $db->fetch_array($query))
 		{
-			var_dump($tag);
+			// var_dump($tag);
 			array_push($tags,$tag['name']);
 		}
 		DBTagsSlug::newSlugs($tags);
