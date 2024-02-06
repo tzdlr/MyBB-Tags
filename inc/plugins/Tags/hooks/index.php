@@ -50,12 +50,16 @@ function tags_index_start()
 
 	if($mybb->get_input('action') == 'recreateSlugs'){
 		echo "RECREATE<br/>";
-		$query = DBTags::get();
+		$query = DBTags::get('tags.name');
+		$tags = array();
 		while($tag = $db->fetch_array($query))
 		{
-			DBTagsSlug::newSlugs($tag['name']);
+			var_dump($tag);
+			array_push($tags,$tag['name']);
 		}
+		DBTagsSlug::newSlugs($tags);
 	}
+	// die();
 
 	if($tags != '')
 	{
